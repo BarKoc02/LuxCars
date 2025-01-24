@@ -1,0 +1,54 @@
+﻿@model LuxCars.Models.Car
+
+@{
+    ViewData["Title"] = "Edit Car";
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+    {
+        <h2>Edit Car</h2>
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Engine" class="control-label"></label>
+                <input asp-for="Engine" class="form-control" />
+                <span asp-validation-for="Engine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price_per_day" class="control-label"></label>
+                <input asp-for="Price_per_day" class="form-control" />
+                <span asp-validation-for="Price_per_day" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="Index" class="btn btn-danger">Cancel</a>
+        </form>
+    }
+    else
+    {
+        <h1 style="color: red">Access denied</h1>
+    }
+</body>
+</html>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

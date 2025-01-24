@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<body>
+<div class="text-center">
+    <h1 class="display-4">Welcome to LuxCars</h1>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p asp-area="Identity" asp-page="/Account/Manage/Index">Nice to see you again @User.Identity?.Name!</p>
+        }
+        else
+        {
+            <p>Please log in to see list of our cars</p>
+        }
+</div>
+<footer style="text-align: center;">
+    <div class="container">
+        <p>Last visit: @ViewData["LastVisit"]</p>
+        <p>Session: @ViewData["UserSession"]</p>
+        <p>&copy; 2025 - LuxCars</p>
+    </div>
+</footer>
+</body>
